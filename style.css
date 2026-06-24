@@ -1,0 +1,234 @@
+/* Advanced Fraud Detection Styling */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+    background:linear-gradient(135deg,#667eea,#764ba2);
+    min-height:100vh;
+    padding:20px;
+    line-height:1.6;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+    background:white;
+    border-radius:25px;
+    box-shadow:0 20px 40px rgba(0,0,0,0.15);
+    overflow:hidden;
+}
+
+.header{
+    background:linear-gradient(45deg,#4CAF50,#45a049);
+    color:white;
+    padding:40px;
+    text-align:center;
+}
+
+h1{
+    font-size:2.8em;
+    margin-bottom:15px;
+}
+
+.header p{
+    font-size:1.3em;
+    opacity:0.95;
+}
+
+.form-section{
+    padding:40px;
+}
+
+h2{
+    color:#333;
+    margin:35px 0 25px 0;
+    font-size:1.8em;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:25px;
+    margin-bottom:30px;
+}
+
+.form-group{
+    background:#f8f9fa;
+    padding:25px;
+    border-radius:15px;
+    border-left:5px solid #4CAF50;
+    transition:0.3s ease;
+}
+
+.customer-section{
+    border-left-color:#2196F3 !important;
+    background:linear-gradient(135deg,#e3f7ff,#f0f8ff);
+}
+
+label{
+    display:block;
+    margin-bottom:12px;
+    font-weight:600;
+    font-size:15px;
+    letter-spacing:0.5px;
+}
+
+input,select{
+    width:100%;
+    padding:15px;
+    border:2px solid #e1e5e9;
+    border-radius:10px;
+    font-size:16px;
+    background:white;
+    transition:0.3s ease;
+}
+
+input:focus,select:focus{
+    border-color:#4CAF50;
+    box-shadow:0 0 0 4px rgba(76,175,80,0.15);
+    transform:translateY(-2px);
+    outline:none;
+}
+
+button{
+    width:100%;
+    padding:20px;
+    background:linear-gradient(45deg,#4CAF50,#45a049);
+    color:white;
+    border:none;
+    border-radius:15px;
+    font-size:20px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s ease;
+    margin-top:20px;
+}
+
+button:hover:not(:disabled){
+    transform:translateY(-3px);
+    box-shadow:0 12px 30px rgba(76,175,80,0.4);
+}
+
+button:disabled{
+    opacity:0.7;
+    cursor:not-allowed;
+}
+
+#map{
+    height:350px;
+    background:linear-gradient(45deg,#e1e5e9,#f8f9fa);
+    border-radius:20px;
+    margin:30px 0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:#666;
+    font-size:20px;
+    border:3px dashed #dee2e6;
+}
+
+.shop-info{
+    background:#e3f2fd !important;
+    padding:18px !important;
+    border-radius:12px !important;
+    margin:15px 0 !important;
+    color:#1976d2 !important;
+    border-left:5px solid #2196F3 !important;
+    font-weight:600;
+}
+
+#result{
+    padding:40px;
+    border-radius:20px;
+    text-align:center;
+    font-size:22px;
+    font-weight:bold;
+    margin:30px;
+    display:none;
+    animation:slideIn 0.5s ease;
+}
+
+#result.safe{
+    background:linear-gradient(45deg,#d4edda,#c3e6cb);
+    color:#155724;
+    border:4px solid #28a745;
+    box-shadow:0 15px 35px rgba(40,167,69,0.3);
+}
+
+#result.fraud{
+    background:linear-gradient(45deg,#f8d7da,#f5c6cb);
+    color:#721c24;
+    border:4px solid #dc3545;
+    box-shadow:0 15px 35px rgba(220,53,69,0.3);
+}
+
+#result.loading{
+    background:linear-gradient(45deg,#fff3cd,#ffeaa7);
+    color:#856404;
+    border:4px solid #ffc107;
+}
+
+.otp-box{
+    background:linear-gradient(45deg,#17a2b8,#138496);
+    color:white;
+    padding:25px;
+    border-radius:15px;
+    font-size:28px;
+    font-family:'Courier New',monospace;
+    margin:25px 0;
+    box-shadow:0 10px 30px rgba(23,162,184,0.4);
+}
+
+.customer-card{
+    background:linear-gradient(135deg,#667eea,#764ba2);
+    color:white;
+    padding:25px;
+    border-radius:20px;
+    margin:25px 0;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(102,126,234,0.4);
+}
+
+.risk-score{
+    background:linear-gradient(45deg,#fff3cd,#ffeaa7);
+    border:3px solid #ffc107;
+    color:#856404;
+    padding:25px;
+    border-radius:15px;
+    font-weight:bold;
+    text-align:center;
+    font-size:18px;
+}
+
+@keyframes slideIn{
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* Responsive */
+
+@media (max-width:768px){
+    .grid{
+        grid-template-columns:1fr;
+    }
+
+    h1{
+        font-size:2em;
+    }
+
+    #map{
+        height:250px;
+        font-size:16px;
+    }
+}
