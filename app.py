@@ -13,7 +13,7 @@ print("🔄 Loading model...")
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # Model path
-model_path = os.path.join(BASE_DIR, "..", "model", "fraud_model.pkl")
+model_path = os.path.join(BASE_DIR, "fraud_model.pkl")
 
 if not os.path.exists(model_path):
     print("❌ Model not found!")
