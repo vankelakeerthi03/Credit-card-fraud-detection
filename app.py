@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
 import joblib
 import numpy as np
@@ -28,62 +28,25 @@ print("✅ Model loaded successfully")
 
 @app.route("/")
 def home():
-    return "💳 Fraud Detection API Running"
+   
+    return render_template('index.html')
 
 
 @app.route("/predict", methods=["POST"])
 def predict():
-
     try:
-        data = request.get_json()
+        features = [float(x) for x in request.form.values()]
+        prediction = model.predict([np.array(features)])
 
-        if not data:
-            return jsonify({"error": "No input data provided"}), 400
-
-        # Read input
-        time = float(data.get("Time", 0))
-        amount = float(data.get("Amount", 0))
-
-        # Feature array
-        features = np.array([[time, amount]])
-
-        # Prediction
-        prediction = int(model.predict(features)[0])
-
-        # Fraud probability
-        prob = 0
-        if hasattr(model, "predict_proba"):
-            prob = float(model.predict_proba(features)[0][1])
-
-        # Generate OTP
-        otp = str(np.random.randint(100000, 999999))
-
-        # Status message
-        if prediction == 1:
+        if prediction[0] == 1:
             status = "🚨 FRAUD TRANSACTION DETECTED"
         else:
             status = "✅ SAFE TRANSACTION"
 
-        # Return response
-        return jsonify({
-            "prediction": prediction,
-            "status": status,
-            "otp": otp,
-            "fraud_probability": round(prob, 4),
-            "location": data.get("location", "Unknown")
-        })
+        return render_template('index.html', prediction_text=status)
 
     except Exception as e:
-        print("❌ Server Error:", e)
-
-        return jsonify({
-            "prediction": 0,
-            "status": "Server Error",
-            "otp": "000000",
-            "fraud_probability": 0
-        })
-
+        return render_template('index.html', prediction_text="Error: Please fill all 30 values")
 
 if __name__ == "__main__":
-    print("🚀 Starting API → http://127.0.0.1:5000")
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    app.run(debug=True)
